@@ -1,9 +1,14 @@
 from web3 import Web3
 
 
-pool_address = {
+w3 = Web3(Web3.HTTPProvider("https://mainnet.infura.io/v3/58ca44ea40d34cb7939ccaa8c9adf06e"))
+if w3:
+    print('connected')
+uni_abi = open("Uniswappoolabi.txt", "r").read()
+kyber_abi = open('kyberswappoolabi.txt','r').read()
 
-  #'Dai_to_eth' : ['0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11','0x20d6b227F4a5a2A13d520329f01bb1F8F9d2d628'],
+
+pool_address = {
 
   'Dai_to_USDT' : ['0xB20bd5D04BE54f870D5C0d3cA85d82b34B836405', '0x8e6dBCaC80Be6E4ef4bB2ceCD83ABc41a1E968e2'],
 
@@ -11,18 +16,6 @@ pool_address = {
 
 }
 
-w3 = Web3(Web3.HTTPProvider("https://mainnet.infura.io/v3/58ca44ea40d34cb7939ccaa8c9adf06e"))
-if w3:
-    print('connected')
-uni_abi = open("Uniswappoolabi.txt", "r").read()
-kyber_abi = open('kyberswappoolabi.txt','r').read()
-
-#kyber_contract = w3.eth.contract(address= '0x20d6b227F4a5a2A13d520329f01bb1F8F9d2d628',abi=kyber_abi)
-#if kyber_contract:
-#    print('connected')
-
-#kyber_reserve = kyber_contract.functions.getTradeInfo().call()
-#print(kyber_reserve)
 
 for name , address in pool_address.items():
     print(name +":")
